@@ -9,9 +9,53 @@
 </head>
 <body>
   <script>
+    let playerSelection = prompt('Rock, Paper, or Scissors?').toLowerCase;
+    let computerSelection = getComputerChoice();
+
+    function play(player, computer) {
+      if (player === 'rock') {
+        switch (computer) {
+          case 'rock': 
+          return console.log('Tie! Play Again.');
+          break;
+          case 'paper': 
+          return console.log('You Lose! Try Again.');
+          break;
+          case 'scissors': 
+          return console.log('You Win! Congrats! Play Again?')
+          break;
+        } 
+      } else if (player === 'paper') {  
+          switch (computer) {
+          case 'rock': 
+          return console.log('You Win! Congrats! Play Again?');
+          break;
+          case 'paper': 
+          return console.log('Tie! Play Again.');
+          break;
+          case 'scissors': 
+          return console.log('You Lose! Try Again.')
+          break;
+          }
+      } else if (player === 'scissors') {  
+          switch (computer) {
+          case 'rock': 
+          return console.log('You Lose! Try Again.');
+          break;
+          case 'paper': 
+          return console.log('You Win! Congrats! Play Again?');
+          break;
+          case 'scissors': 
+          return console.log('Tie! Play Again.')
+          break;
+          }
+        }
+      }
+      play(playerSelection, computerSelection)
+
     function getComputerChoice() {
       randomNum = Math.floor(Math.random() * 3);
-      let choice = ['Rock', 'Paper', 'Scissors']
+      let choice = ['rock', 'paper', 'scissors']
       return choice[randomNum]
     } console.log(getComputerChoice());
     

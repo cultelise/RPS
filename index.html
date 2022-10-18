@@ -1,92 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" href="./styles.css">
-  <link rel="'script" href="./script.js">
-  <title>Document</title>
-</head>
-<body>
-  <script>
-    let playerSelection = () =>
-       prompt('Rock, Paper, or Scissors?').toLowerCase();
-      
-    game();
-
-    function game() {
-      let playerScore = 0
-      let computerScore = 0
-      for (; computerScore < 6, playerScore < 6;) {
-        if (playerScore === 5) {
-          return console.log('You Win! Thanks for Playing.');
-        } else if (computerScore === 5) {
-          console.log('You Lose! Try Again.');
-          return game();
-        } else switch (playRound(playerSelection(), getComputerChoice())) {
-          case 'tie':
-            console.log('Tie! ' + score());
-            break;
-          case 'loss':
-            computerScore++;
-		        console.log('Loss! ' + score());
-            break;
-          case 'win':
-            playerScore++;
-		        console.log('Win! ' + score());
-            break;
-        } function score() {
-        return String(playerScore) + ' - ' + String(computerScore);
-        }
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="'script" href="./script.js">
+    <title>Rock, Paper, Scissors.</title>
+  </head>
+  <body>
+    <script>
+      function getPlayerChoice() {
+        return prompt('Rock, Paper, or Scissors?').toLowerCase();
       }
-    }
+      function getComputerChoice() {
+        randomNum = Math.floor(Math.random() * 3);
+        let choice = ['rock', 'paper', 'scissors']
+        return choice[randomNum]
+      }
 
-    function playRound(player, computer) {
-      if (player === 'rock') {
-        switch (computer) {
-          case 'rock': 
-          return 'tie';
-          break;
-          case 'paper': 
-          return 'loss';
-          break;
-          case 'scissors': 
-          return 'win';
-          break;
-        } 
-      } else if (player === 'paper') {  
-          switch (computer) {
-          case 'rock': 
-          return 'win';
-          break;
-          case 'paper': 
-          return 'tie';
-          break;
-          case 'scissors': 
-          return 'loss';
-          break;
-          }
-      } else if (player === 'scissors') {  
-          switch (computer) {
-          case 'rock': 
-          return 'loss';
-          break;
-          case 'paper': 
-          return 'win';
-          break;
-          case 'scissors': 
-          return 'tie';
-          break;
+      playGame();
+
+      function playGame() {
+        let playerScore = 0;
+        let computerScore = 0;
+        for (; computerScore < 6, playerScore < 6;) {
+          if (playerScore === 5) {
+            return console.log('You Win! Thanks for Playing.');
+          } else if (computerScore === 5) {
+            console.log('You Lose! Try Again.');
+            return playGame();
+          } else switch (playRound(getPlayerChoice(), getComputerChoice())) {
+            case 'tie':
+              console.log('Tie! ' + score());
+              break;
+            case 'loss':
+              computerScore++;
+              console.log('Loss! ' + score());
+              break;
+            case 'win':
+              playerScore++;
+              console.log('Win! ' + score());
+              break;
+          } function score() {
+          return String(playerScore) + ' - ' + String(computerScore);
           }
         }
       }
 
-    function getComputerChoice() {
-      randomNum = Math.floor(Math.random() * 3);
-      let choice = ['rock', 'paper', 'scissors']
-      return choice[randomNum]
-    }
-    
-  </script>
-</body>
+      function playRound(player, computer) {
+        if (player === 'rock') {
+          switch (computer) {
+            case 'rock': 
+            return 'tie';
+            break;
+            case 'paper': 
+            return 'loss';
+            break;
+            case 'scissors': 
+            return 'win';
+            break;
+          } 
+        } else if (player === 'paper') {  
+            switch (computer) {
+            case 'rock': 
+            return 'win';
+            break;
+            case 'paper': 
+            return 'tie';
+            break;
+            case 'scissors': 
+            return 'loss';
+            break;
+            }
+        } else if (player === 'scissors') {  
+            switch (computer) {
+            case 'rock': 
+            return 'loss';
+            break;
+            case 'paper': 
+            return 'win';
+            break;
+            case 'scissors': 
+            return 'tie';
+            break;
+            }
+          }
+        }
+    </script>
+  </body>
 </html>

@@ -11,8 +11,32 @@
   <script>
     let playerSelection = prompt('Rock, Paper, or Scissors?').toLowerCase();
     let computerSelection = getComputerChoice();
+    
 
-    function play(player, computer) {
+    function game() {
+      let score = playerScore + ' - ' + computerScore
+      if (playerScore < 5 && computerScore < 5) {
+        
+        return ;
+      } else if () {}
+    }
+      if (playRound() === console.log('Tie! Play Again.')) {
+      console.log(score);
+      if (playRound() === console.log('You Lose! Try Again.')) {
+      
+      for (let u = -1; u < 5; u++) {
+      if (playRound() === console.log('You Lose! Try Again.')) {
+        let computerScore = u;
+        console.log(score)
+      let playerScore = u;
+      console.log(score);
+    }
+    for (let i = -1; i < 5; i++) {
+      let playerScore = i;
+
+    }
+
+    function playRound(player, computer) {
       if (player === 'rock') {
         switch (computer) {
           case 'rock': 
@@ -51,7 +75,7 @@
           }
         }
       }
-      play(playerSelection, computerSelection);
+      playRound(playerSelection, computerSelection);
 
     function getComputerChoice() {
       randomNum = Math.floor(Math.random() * 3);

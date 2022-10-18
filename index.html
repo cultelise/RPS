@@ -9,7 +9,7 @@
 </head>
 <body>
   <script>
-    let playerSelection = prompt('Rock, Paper, or Scissors?').toLowerCase;
+    let playerSelection = prompt('Rock, Paper, or Scissors?').toLowerCase();
     let computerSelection = getComputerChoice();
 
     function play(player, computer) {
@@ -51,13 +51,13 @@
           }
         }
       }
-      play(playerSelection, computerSelection)
+      play(playerSelection, computerSelection);
 
     function getComputerChoice() {
       randomNum = Math.floor(Math.random() * 3);
       let choice = ['rock', 'paper', 'scissors']
       return choice[randomNum]
-    } console.log(getComputerChoice());
+    }
     
   </script>
 </body>

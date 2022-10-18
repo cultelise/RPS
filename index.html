@@ -9,73 +9,78 @@
 </head>
 <body>
   <script>
-    let playerSelection = prompt('Rock, Paper, or Scissors?').toLowerCase();
+    let yes = prompt('Play RPS? Type yes').toLowerCase();
     let computerSelection = getComputerChoice();
-    
+    let playerSelection = () =>
+       prompt('Rock, Paper, or Scissors?').toLowerCase();
+      
+    if (yes = 'yes') {
+      game()
+    }
 
     function game() {
-      let score = playerScore + ' - ' + computerScore
-      if (playerScore < 5 && computerScore < 5) {
-        
-        return ;
-      } else if () {}
-    }
-      if (playRound() === console.log('Tie! Play Again.')) {
-      console.log(score);
-      if (playRound() === console.log('You Lose! Try Again.')) {
+      let playerScore = 0
+      let computerScore = 0
+      for (; computerScore < 5, playerScore < 5; computerScore++, playerScore++) {
+        let currentScore = playerScore + ' - ' + computerScore;
       
-      for (let u = -1; u < 5; u++) {
-      if (playRound() === console.log('You Lose! Try Again.')) {
-        let computerScore = u;
-        console.log(score)
-      let playerScore = u;
-      console.log(score);
+        switch (playRound(playerSelection(), computerSelection)) {
+          case 'tie':
+            playerScore--;
+		        computerScore--;
+            console.log('Tie!' + String(currentScore));
+            break;
+          case 'loss':
+            playerScore--;
+		        console.log('Loss!' + String(currentScore));
+            break;
+          case 'win':
+            computerScore--;
+		        console.log('Win!' + String(currentScore));
+            break;
+        }
+      }
     }
-    for (let i = -1; i < 5; i++) {
-      let playerScore = i;
-
-    }
-
     function playRound(player, computer) {
       if (player === 'rock') {
         switch (computer) {
           case 'rock': 
-          return console.log('Tie! Play Again.');
+          return 'tie';
           break;
           case 'paper': 
-          return console.log('You Lose! Try Again.');
+          return 'loss';
           break;
           case 'scissors': 
-          return console.log('You Win! Congrats! Play Again?')
+          return 'win';
           break;
         } 
       } else if (player === 'paper') {  
           switch (computer) {
           case 'rock': 
-          return console.log('You Win! Congrats! Play Again?');
+          return 'win';
           break;
           case 'paper': 
-          return console.log('Tie! Play Again.');
+          return 'tie';
           break;
           case 'scissors': 
-          return console.log('You Lose! Try Again.')
+          return 'loss';
           break;
           }
       } else if (player === 'scissors') {  
           switch (computer) {
           case 'rock': 
-          return console.log('You Lose! Try Again.');
+          return 'loss';
           break;
           case 'paper': 
-          return console.log('You Win! Congrats! Play Again?');
+          return 'win';
           break;
           case 'scissors': 
-          return console.log('Tie! Play Again.')
+          return 'tie';
           break;
           }
         }
-      }
-      playRound(playerSelection, computerSelection);
+      } 
+      game();
 
     function getComputerChoice() {
       randomNum = Math.floor(Math.random() * 3);

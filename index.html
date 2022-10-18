@@ -14,23 +14,17 @@
       }
 
       function getComputerChoice() {
-        let randomNum = Math.floor(Math.random() * 3);
-        let choice = ['rock', 'paper', 'scissors']
-        return choice[randomNum]
+        let choice = ['rock', 'paper', 'scissors'];
+        return choice[Math.floor(Math.random() * 3)];
       }
-
+      
       playGame();
 
       function playGame() {
         let playerScore = 0;
         let computerScore = 0;
-        for (; computerScore < 6, playerScore < 6;) {
-          if (playerScore === 5) {
-            return console.log('You Win! Thanks for Playing.');
-          } else if (computerScore === 5) {
-            console.log('You Lose! Try Again.');
-            return playGame();
-          } else switch (playRound(getPlayerChoice(), getComputerChoice())) {
+        for (;computerScore < 5 && playerScore < 5;) {
+          switch (playRound(getPlayerChoice(), getComputerChoice())) {
             case 'tie':
               console.log('Tie! ' + score());
               break;
@@ -43,9 +37,14 @@
               console.log('Win! ' + score());
               break;
           } function score() {
-          return String(playerScore) + ' - ' + String(computerScore);
+          return `${playerScore} - ${computerScore}.`;
           }
-        }
+        } if (playerScore === 5) {
+            return console.log('You Win! Thanks for Playing.');
+          } else if (computerScore === 5) {
+            console.log('You Lose! Try Again.');
+            return playGame();
+          } 
       }
 
       function playRound(player, computer) {

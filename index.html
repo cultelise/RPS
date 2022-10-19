@@ -23,7 +23,7 @@
       function playGame() {
         let playerScore = 0;
         let computerScore = 0;
-        for (;computerScore < 5 && playerScore < 5;) {
+        while (computerScore < 5 && playerScore < 5) {
           switch (playRound(getPlayerChoice(), getComputerChoice())) {
             case 'tie':
               console.log('Tie! ' + score());

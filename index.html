@@ -13,9 +13,9 @@
 
     </h1>
     <button id="start">Start Game</button>
-    <button id='rock' class="opt">Rock</button>
-    <button id="paper" class="opt">Paper</button>
-    <button id='scissors' class="opt">Scissors</button>
+    <button id='rock' class="opt" style="display:none">Rock</button>
+    <button id="paper" class="opt" style="display:none">Paper</button>
+    <button id='scissors' class="opt" style="display:none">Scissors</button>
    </div>
   </body>
   <script>
@@ -23,28 +23,32 @@
     console.log(startButt);
     let optButts = document.querySelectorAll('.opt');
     let optButtons = document.getElementsByClassName('opt');
-    console.log(optButts)
-    
-    let pChoice = '';
+    let playerScore = 0;
+    let computerScore = 0;
 
     startButt.addEventListener('click', () => {
       startButt.setAttribute('style', 'display: none');
       for(let choice of Array.from(optButtons)) {
         choice.setAttribute('style', 'display: initial');
-    }  playGame();
+    }  
   });
     
-
+    for(let choice of Array.from(optButts)) {
+      choice.addEventListener('click', (e => {
+        if (e.target.id === 'rock') {
+          console.log(playGame(playRound('rock', getComputerChoice())));
+        } else if (e.target.id === 'paper') {
+          console.log(playGame(playRound('paper', getComputerChoice())));
+        } else if (e.target.id === 'scissors') {
+          console.log(playGame(playRound('scissors', getComputerChoice())));
+        }
+      })) 
+    } 
    
-  
-  
 
-    async function playGame() {
-      startButt.setAttribute('style', 'display: none');
-      let playerScore = 0;
-      let computerScore = 0;
-      while (computerScore < 5 && playerScore < 5) {
-        switch (playRound()) {
+    function playGame(outcome) {
+      
+        switch (outcome) {
           case 'tie':
             console.log('Tie! ' + score());
             break;
@@ -58,31 +62,20 @@
             break;
         } function score() {
         return `${playerScore} - ${computerScore}.`;
-        } break;
-      } if (playerScore === 5) {
+        } 
+        if (playerScore === 5) {
+          playerScore = 0;
+          computerScore = 0
           return console.log('You Win! Thanks for Playing.');
         } else if (computerScore === 5) {
-          console.log('You Lose! Try Again.');
-          return playGame();
-        } 
+          playerScore = 0;
+          computerScore = 0
+          return console.log('You Lose! Try Again.');
+      }
     }
-  
-   let playRound = outcome(player, getComputerChoice) => {
-    for(let choice of Array.from(optButts)) {
-      choice.addEventListener('click', (e => {
-        if (e.target.id = 'rock') {
-          player = 'rock';
-          console.log(e.target.id)
-        } else if (e.target.id === 'paper') {
-          player = 'paper';
-        } else if (e.target.id === 'scissors') {
-          player = 'scissors';
-        }
-      })) 
-    }
-    }
-   function outcome(player, computer) {
-      if (player === 'rock') {
+
+      function playRound(player, computer) {
+        if (player === 'rock') {
         switch (computer) {
           case 'rock': 
           return 'tie';
@@ -120,7 +113,6 @@
           }
         }
       }
-      
       function getComputerChoice() {
       let choice = ['rock', 'paper', 'scissors'];
       return choice[Math.floor(Math.random() * 3)];

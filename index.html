@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="./styles.css">
-    <link rel="'script" href="./script.js">
+    <script src="./js/script.js" defer></script> 
     <title>Rock, Paper, Scissors.</title>
   </head>
   <body>
+    
    <div>
     <h1></h1>
     <button id="start">Start Game</button>
@@ -16,105 +17,5 @@
     <button id='scissors' class="opt" style="display:none">Scissors</button>
    </div>
   </body>
-  <script>
-    let startButt = document.querySelector('#start');
-    console.log(startButt);
-    let optButts = document.querySelectorAll('.opt');
-    let optButtons = document.getElementsByClassName('opt');
-    let playerScore = 0;
-    let computerScore = 0;
-    let heading = document.querySelector('h1');
-
-    startButt.addEventListener('click', () => {
-      startButt.setAttribute('style', 'display: none');
-      for(let choice of Array.from(optButtons)) {
-        choice.setAttribute('style', 'display: initial');
-    }  
-  });
     
-    for(let choice of Array.from(optButts)) {
-      choice.addEventListener('click', (e => {
-        if (e.target.id === 'rock') {
-          (playGame(playRound('rock', getComputerChoice())));
-        } else if (e.target.id === 'paper') {
-          console.log(playGame(playRound('paper', getComputerChoice())));
-        } else if (e.target.id === 'scissors') {
-          console.log(playGame(playRound('scissors', getComputerChoice())));
-        }
-      })) 
-    } 
-   
-
-    function playGame(outcome) {
-      
-        switch (outcome) {
-          case 'tie':
-            heading.textContent = ('Tie! ' + score());
-            break;
-          case 'loss':
-            computerScore++;
-            heading.textContent = ('Loss! ' + score());
-            break;
-          case 'win':
-            playerScore++;
-            heading.textContent = ('Win! ' + score());
-            break;
-        } function score() {
-        return `${playerScore} - ${computerScore}.`;
-        } 
-        if (playerScore === 5) {
-          playerScore = 0;
-          computerScore = 0
-          heading.textContent = ('You Win! Thanks for Playing.');
-        } else if (computerScore === 5) {
-          playerScore = 0;
-          computerScore = 0
-          heading.textContent = ('You Lose! Try Again.');
-      }
-    }
-
-      function playRound(player, computer) {
-        if (player === 'rock') {
-        switch (computer) {
-          case 'rock': 
-          return 'tie';
-          break;
-          case 'paper': 
-          return 'loss';
-          break;
-          case 'scissors': 
-          return 'win';
-          break;
-        } 
-      } else if (player === 'paper') {  
-          switch (computer) {
-          case 'rock': 
-          return 'win';
-          break;
-          case 'paper': 
-          return 'tie';
-          break;
-          case 'scissors': 
-          return 'loss';
-          break;
-          }
-      } else if (player === 'scissors') {  
-          switch (computer) {
-          case 'rock': 
-          return 'loss';
-          break;
-          case 'paper': 
-          return 'win';
-          break;
-          case 'scissors': 
-          return 'tie';
-          break;
-          }
-        }
-      }
-      function getComputerChoice() {
-      let choice = ['rock', 'paper', 'scissors'];
-      return choice[Math.floor(Math.random() * 3)];
-    }
-  </script>
 </html>

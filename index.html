@@ -12,37 +12,39 @@
     <h1>
 
     </h1>
-    <button id="start">Star Game</button>
-    <button class="opt, rock">Rock</button>
-    <button class="opt, paper">Paper</button>
-    <button class="opt, scissors">Scissors</button>
+    <button id="start">Start Game</button>
+    <button id='rock' class="opt">Rock</button>
+    <button id="paper" class="opt">Paper</button>
+    <button id='scissors' class="opt">Scissors</button>
    </div>
   </body>
   <script>
-    let startButton = document.getElementById(start)
-    let optButton = document.getElementsByClassName('opt');
-    function getPlayerChoice() {
-      return prompt('Rock, Paper, or Scissors?').toLowerCase();
-    }
-    startButton.addEventListener('click', (playGame));
-
-    let playerChoice = (optButton.addEventListener('click'), (choice) => {
-      if (choice.class === 'rock') {
-        return 'rock';
-      } else if (choice.class === 'paper') {
-        return 'paper';
-      } else if (choice.class === 'scissors') {
-        return 'scissors';
-      }
-    });
+    let startButt = document.querySelector('#start');
+    console.log(startButt);
+    let optButts = document.querySelectorAll('.opt');
+    let optButtons = document.getElementsByClassName('opt');
+    console.log(optButts)
     
+    let pChoice = '';
+
+    startButt.addEventListener('click', () => {
+      startButt.setAttribute('style', 'display: none');
+      for(let choice of Array.from(optButtons)) {
+        choice.setAttribute('style', 'display: initial');
+    }  playGame();
+  });
     
 
-    function playGame() {
+   
+  
+  
+
+    async function playGame() {
+      startButt.setAttribute('style', 'display: none');
       let playerScore = 0;
       let computerScore = 0;
       while (computerScore < 5 && playerScore < 5) {
-        switch (playRound(PlayerChoice, getComputerChoice())) {
+        switch (playRound()) {
           case 'tie':
             console.log('Tie! ' + score());
             break;
@@ -56,7 +58,7 @@
             break;
         } function score() {
         return `${playerScore} - ${computerScore}.`;
-        }
+        } break;
       } if (playerScore === 5) {
           return console.log('You Win! Thanks for Playing.');
         } else if (computerScore === 5) {
@@ -64,8 +66,22 @@
           return playGame();
         } 
     }
-
-    function playRound(player, computer) {
+  
+   let playRound = outcome(player, getComputerChoice) => {
+    for(let choice of Array.from(optButts)) {
+      choice.addEventListener('click', (e => {
+        if (e.target.id = 'rock') {
+          player = 'rock';
+          console.log(e.target.id)
+        } else if (e.target.id === 'paper') {
+          player = 'paper';
+        } else if (e.target.id === 'scissors') {
+          player = 'scissors';
+        }
+      })) 
+    }
+    }
+   function outcome(player, computer) {
       if (player === 'rock') {
         switch (computer) {
           case 'rock': 
@@ -104,6 +120,7 @@
           }
         }
       }
+      
       function getComputerChoice() {
       let choice = ['rock', 'paper', 'scissors'];
       return choice[Math.floor(Math.random() * 3)];

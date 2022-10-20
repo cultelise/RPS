@@ -9,9 +9,7 @@
   </head>
   <body>
    <div>
-    <h1>
-
-    </h1>
+    <h1></h1>
     <button id="start">Start Game</button>
     <button id='rock' class="opt" style="display:none">Rock</button>
     <button id="paper" class="opt" style="display:none">Paper</button>
@@ -25,6 +23,7 @@
     let optButtons = document.getElementsByClassName('opt');
     let playerScore = 0;
     let computerScore = 0;
+    let heading = document.querySelector('h1');
 
     startButt.addEventListener('click', () => {
       startButt.setAttribute('style', 'display: none');
@@ -36,7 +35,7 @@
     for(let choice of Array.from(optButts)) {
       choice.addEventListener('click', (e => {
         if (e.target.id === 'rock') {
-          console.log(playGame(playRound('rock', getComputerChoice())));
+          (playGame(playRound('rock', getComputerChoice())));
         } else if (e.target.id === 'paper') {
           console.log(playGame(playRound('paper', getComputerChoice())));
         } else if (e.target.id === 'scissors') {
@@ -50,15 +49,15 @@
       
         switch (outcome) {
           case 'tie':
-            console.log('Tie! ' + score());
+            heading.textContent = ('Tie! ' + score());
             break;
           case 'loss':
             computerScore++;
-            console.log('Loss! ' + score());
+            heading.textContent = ('Loss! ' + score());
             break;
           case 'win':
             playerScore++;
-            console.log('Win! ' + score());
+            heading.textContent = ('Win! ' + score());
             break;
         } function score() {
         return `${playerScore} - ${computerScore}.`;
@@ -66,11 +65,11 @@
         if (playerScore === 5) {
           playerScore = 0;
           computerScore = 0
-          return console.log('You Win! Thanks for Playing.');
+          heading.textContent = ('You Win! Thanks for Playing.');
         } else if (computerScore === 5) {
           playerScore = 0;
           computerScore = 0
-          return console.log('You Lose! Try Again.');
+          heading.textContent = ('You Lose! Try Again.');
       }
     }
 
